@@ -1,7 +1,7 @@
 # Simple Pong in Python 3
 
 import turtle       
-import winsound 
+import os
 
 wn = turtle.Screen()
 wn.title("Pong by Steve Shackleton")
@@ -38,8 +38,8 @@ ball.shape("square")
 ball.color("white")
 ball.penup()
 ball.goto(0, 0)
-ball.dx = 0.10
-ball.dy = -0.10
+ball.dx = 2
+ball.dy = -2
 
 # Pen 
 pen = turtle.Turtle()
@@ -92,10 +92,11 @@ while True:
     if ball.ycor() > 290:
         ball.sety(290)
         ball.dy *= -1
-        # winsound.PlaySound("sound1.wav", winsound.SND_ASYNC)
+        os.system("afplay bounce.wav&")
     if ball.ycor() < -290:
          ball.sety(-290)
          ball.dy *= -1 
+         os.system("afplay bounce.wav&")
         #  winsound.PlaySound("sound1.wav", winsound.SND_ASYNC)           
     if ball.xcor() > 390:
         ball.goto(0, 0)
@@ -113,9 +114,11 @@ while True:
 #Paddle and ball collisions
     if (ball.xcor() > 340 and ball.xcor() < 350) and (ball.ycor() < paddle_b.ycor() + 40 and ball.ycor() > paddle_b.ycor() -40):
         ball.setx(340)
-        ball.dx *= -1       
+        ball.dx *= -1
+        os.system("afplay bounce.wav&")       
         # winsound.PlaySound("sound1.wav", winsound.SND_ASYNC)
     if (ball.xcor() < -340 and ball.xcor() > -350) and (ball.ycor() < paddle_a.ycor() + 40 and ball.ycor() > paddle_a.ycor() -40):
         ball.setx(-340)
         ball.dx *= -1
+        os.system("afplay bounce.wav&")
         # winsound.PlaySound("sound1.wav", winsound.SND_ASYNC)        
